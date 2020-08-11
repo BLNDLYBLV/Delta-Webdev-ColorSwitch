@@ -1,11 +1,16 @@
 canvas {
-    margin: 0%;
+    margin: 0;
+    padding: 0;
     margin-left: 27.4%;
     background-color: #1A1A1A;
     box-shadow: 0 5px 30px black;
 }
-body{
+html{
     margin: 0%;
+}
+body{
+    margin: 0;
+    padding: 0;
     /* background-image: linear-gradient(to bottom, #43e97b 0%, #38f9d7 100%); */
     /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
     background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);

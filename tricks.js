@@ -1,6 +1,6 @@
 let canvas = document.querySelector('canvas');
 // canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
+canvas.height = window.innerHeight;
 let aud1=document.getElementById('aud1');
 let aud2=document.getElementById('aud1');
 let retryaud=document.getElementById('retry');
@@ -139,12 +139,13 @@ function startscreen()
 
 }
 
-
+console.log(window);
 
 
 let i;
-let cx=325;//window.innerWidth/2;
-let cy=window.innerHeight*0.7;
+// let cx=((window.innerWidth)*0.2117);
+let cx=325;
+let cy=window.innerHeight*0.8;
 let iw=window.innerWidth;
 let r=10;
 let cdy;
@@ -390,7 +391,7 @@ class obs1
                 }
             }
             }
-            if(cir.cy>=600)
+            if(cir.cy>=window.innerHeight)
                 stop=1;
             
             c.beginPath();
@@ -410,13 +411,13 @@ class obs1
                 this.ang-=0.04;
                 cir.col='#2E3830';
                 c.fillStyle='#2E3830';
-                c.fillRect(0,0,650,695);
+                c.fillRect(0,0,650,window.innerHeight);
                 c.font='75px Staatliches';
                 c.strokeStyle='#CCCCCC'
                 c.fillStyle='#CCCCCC'
-                c.fillText("GAME OVER",193,190);
+                c.fillText("GAME OVER",193,window.innerHeight*0.30);
                 c.font='40px Staatliches';
-                c.fillText("Score: "+score,193,270);
+                c.fillText("Score: "+score,193,window.innerHeight*0.43);
                 
                 
                 if(Number(localStorage.getItem('hscore'))<score)
@@ -424,7 +425,7 @@ class obs1
                     localStorage.setItem('hscore',score);
                 }    
                 
-                c.fillText("Highscore: "+localStorage.getItem('hscore'),193,340);
+                c.fillText("Highscore: "+localStorage.getItem('hscore'),193,window.innerHeight*0.51);
                 c.fillStyle='#222A22';
                 c.fillRect(245,450,160,70)
                 c.fillStyle='#CCCCCC';
@@ -568,7 +569,7 @@ class obs2
             //         }
             //     }    
             // }
-            if(cir.cy>=600)
+            if(cir.cy>=innerHeight)
                 stop=1;
             
             c.beginPath();
@@ -628,7 +629,7 @@ class circle
     
     draw()
     {
-        c.clearRect(0,0,650,695);
+        c.clearRect(0,0,650,window.innerHeight);
         //c.clearRect(0,0,window.innerWidth,window.innerHeight)
         c.beginPath();
         c.arc(this.cx,this.cy,this.r,0,2*Math.PI,false);
@@ -693,7 +694,7 @@ class circle
             // this.ddy+=this.dy;
         }
         
-        if((625>=Math.pow(mouse.x-369-60,2)+Math.pow(mouse.y-60,2)))
+        if((625>=Math.pow(mouse.x-window.innerWidth*0.274-60,2)+Math.pow(mouse.y-60,2)))
         {
             if(swchvar==0)
             {
@@ -732,7 +733,7 @@ class circle
             c.beginPath();
             c.font='40px  Staatliches';
             c.fillStyle='#FFFFFF';
-            c.fillText('Press Space to bounce!',160,580);
+            c.fillText('Press Space to bounce!',160,680);
         }
     }
 }
@@ -881,6 +882,7 @@ addEventListener('keypress',
             key=event.key;
             if(key==' ' || key=='space')
             {
+                event.preventDefault();
                 gstart=1;
                 if(abstrt==0)
                 {
@@ -896,7 +898,11 @@ addEventListener('keypress',
                     swchvar=0;
                 }
             }
-            if(stop==0 )
+            if(key=='p'){
+                swchvar=1;
+                gstart=0;
+            }
+            if(stop==0 && swchvar==0 )
             {
                 aud1.pause();
                 aud1.play();
